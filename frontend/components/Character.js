@@ -1,13 +1,28 @@
-import React from 'react'
+import React, { useState } from 'react';
 
-function Character() { // ❗ Add the props
-  // ❗ Create a state to hold whether the homeworld is rendering or not
-  // ❗ Create a "toggle" click handler to show or remove the homeworld
+function Character(props) { // ❗ Add the props
+  const [showHomeworld, setShowHomeworld] = useState(false) // ❗ Create a state to hold whether the homeworld is rendering or not
+
+  const toggleHomeworld = () => {
+    setShowHomeworld(!showHomeworld)
+  } // ❗ Create a "toggle" click handler to show or remove the homeworld
+
+
+
+
   return (
-    <div>
-      {/* Use the same markup with the same attributes as in the mock */}
+    <div className='character-card' onClick={toggleHomeworld}>
+      <h3 className='character-name'>{props.name}</h3>
+      <p>Gender: {props.gender}</p>
+      <p>Birth Year: {props.birthyear}</p>
+      <button className="character-planet" onClick={toggleHomeworld}>Click anywhere for homeworld! I'm an entire button</button>
+      {showHomeworld && (
+        <p>Planet: {props.homeworld.name}</p>
+
+      )}
     </div>
   )
 }
 
-export default Character
+
+export default Character;
